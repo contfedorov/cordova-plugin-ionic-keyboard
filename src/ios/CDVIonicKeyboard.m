@@ -244,6 +244,10 @@ NSString* UITraitsClassString;
         }
         case ResizeNative:
         {
+            // workaround for blank screen after going to another app (e.g. sharing report via email)
+            if (f.size.width == 0 || f.size.height == 0)
+                break;
+
             [self.webView setFrame:CGRectMake(wf.origin.x, wf.origin.y, f.size.width - wf.origin.x, f.size.height - wf.origin.y - self.paddingBottom)];
             break;
         }
